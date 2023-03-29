@@ -6,29 +6,27 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    //Contex:DB tabloları ile proje classlarını bağlamak , ilişkilendirmek için kullanılacak
-
-    //DbContext Entity Framework ile gelen base bir sınıf
-
-    //öncellikle benim veritabanım şurada demem lazım
-
     public class NorthwindContext : DbContext
     {
-        //Proje ile Veritanbanı Bağlantısı Yapıldı
+        //Entity Framework Altyapısı kullanılıyor
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //proje hangi veritabanı ile ilişkili olduğun belirteceğimiz yer
+            //Connection String
+            //sql case insensitive
+            //postgre sql case sensitive
+
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Northwind;Trusted_Connection=true");
         }
 
-        //Tablolar ile nesneler arası ilişkilendirilme işlemleri ,karşılık gelenleri belirleme yapılacak
-        //Benim projemdeki Product nesnesi ile veritabanındaki Products tablosunu bağla
+        //Hangi nesnem hangi tabloya karşılık geldiğini belirtiyorum
+        //tablolarla nesneleri ilişkilendiriyoruz
+        //entity framework altyapısını kullanarak
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
-
-
 
     }
 }

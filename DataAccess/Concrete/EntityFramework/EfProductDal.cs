@@ -11,28 +11,27 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    //IProductDal product'a özel operasyonlar yazılırsa kullanacağız sadece productta olduğu için ayrı yazıldı 
     public class EfProductDal : EfEntityRepositoryBase<Product, NorthwindContext>, IProductDal
     {
         public List<ProductDetailDto> GetProductDetails()
         {
-            //linq ile join
-            //context tablolara karşılık geliyor 
 
             using (NorthwindContext context = new NorthwindContext())
             {
+                //LINQ İle Join Atıyoruz
                 var result = from p in context.Products
                              join c in context.Categories
                              on p.CategoryId equals c.CategoryId
-                             select new ProductDetailDto { ProductId= p.ProductId,
-                                                           ProductName=p.ProductName, 
-                                                           CategoryName=c.CategoryName,
-                                                           UnitsInStock=p.UnitsInStock};
+                             select new ProductDetailDto
+                             {
+                                 ProductId = p.ProductId,
+                                 ProductName = p.ProductName,
+                                 CategoryName = c.CategoryName,
+                                 UnitsInStock = p.UnitsInStock
+                             };
 
-                return result.ToList();      
+                return result.ToList();
             }
-
-            
         }
     }
 }
