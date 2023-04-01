@@ -20,4 +20,8 @@ namespace Business.Abstract
 
         
     }
+
+    //RESTFUL --> HTTP --> TCP 
+    //Controller Gelen İsteklerin İlk Karşılandığı Yer
+
 }
