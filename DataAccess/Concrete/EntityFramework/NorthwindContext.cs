@@ -16,7 +16,7 @@ namespace DataAccess.Concrete.EntityFramework
             //sql case insensitive
             //postgre sql case sensitive
 
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Northwind;Trusted_Connection=true");
+            //Veritabanı Bağlantısı Gerekli
         }
 
         //Hangi nesnem hangi tabloya karşılık geldiğini belirtiyorum
